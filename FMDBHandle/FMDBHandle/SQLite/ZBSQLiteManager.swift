@@ -32,7 +32,7 @@ static let shared = ZBSQLiteManager()
 }
 
 //MARK: -创建数据表以及私有方法
- extension ZBSQLiteManager{
+private extension ZBSQLiteManager{
     
     /// 执行sql,返回查询的数组
     ///
@@ -110,14 +110,23 @@ extension ZBSQLiteManager{
         sql += "ORDER BY statusId DESC LIMIT 20;"
         
         print(sql)
+        let array  = execRecordSet(sql: sql)
+        //将数组反序列化
+        var result = [[String:AnyObject]]()
+        for dict in array {
+            guard let jsonData = dict["status"] as? Data,
+                  let json = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String:AnyObject]
+            else{
+                continue
+            }
+            
+            //追加到数组
+            result.append(json ?? [:])
+            
+            
+        }
         
-        
-        
-        
-        
-        
-        
-        return []
+        return result
     
     }
     /// 新增/修改微博数据,数据属性的时候可能出现重叠

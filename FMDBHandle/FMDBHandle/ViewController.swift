@@ -28,11 +28,12 @@ class ViewController: UIViewController {
       //test search
       //let re = ZBSQLiteManager.shared.execRecordSet(sql: "SELECT statusId,userId,status FROM T_status;")
       //第一次进入微博
-      //let res = ZBSQLiteManager.shared.loadStatus(userId: "1", since_id: 0, max_id: 0)
+      let res = ZBSQLiteManager.shared.loadStatus(userId: "1", since_id: 0, max_id: 0)
+        
       //下拉
       //let res2 = ZBSQLiteManager.shared.loadStatus(userId: "1", since_id: 3, max_id: 0)
       //let res3 = ZBSQLiteManager.shared.loadStatus(userId: "1", since_id: 0, max_id: 6)
-        
+      print(res)
         
     }
 
