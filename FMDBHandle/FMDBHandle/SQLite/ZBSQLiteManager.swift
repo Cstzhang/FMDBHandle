@@ -32,7 +32,39 @@ static let shared = ZBSQLiteManager()
 }
 
 //MARK: -创建数据表以及私有方法
-private extension ZBSQLiteManager{
+ extension ZBSQLiteManager{
+    
+    /// 执行sql,返回查询的数组
+    ///
+    /// - Parameter sql: sql
+    /// - Returns: 搜索结果
+    func execRecordSet(sql:String) -> [[String:AnyObject]] {
+        var result  = [[String:AnyObject]]()
+        
+       //查询数据，不会修改数据，不会开启事物，事物为了保证数据的有效性，一旦失败可以回滚到初始状态
+        queue.inDatabase { (db) in
+            guard let re = db.executeQuery(sql, withArgumentsIn: []) else {
+                return
+            }
+            //遍历结果集合进行处理
+            while re.next(){
+                //获取列数
+                let colCount = re.columnCount
+                //遍历列获取列名
+                for col in 0..<colCount{
+                    //列名 KEY
+                guard  let name  = re.columnName(for: col),
+                    //属性值 Value
+                    let value = re.object(forColumnIndex: col) else{
+                        continue
+                    }
+                    result.append([name : value as AnyObject])
+                }
+            }
+        }
+        return result
+        
+    }
     //创建数据表
     func creatTable() -> () {
         // 1 sql
@@ -58,7 +90,36 @@ private extension ZBSQLiteManager{
 
 //MARK: -数据操作
 extension ZBSQLiteManager{
- 
+    
+    /// 从数据库加载微博数据数组
+    ///
+    /// - Parameters:
+    ///   - userId: 当前登录的用户账号
+    ///   - since_id: 若指定此参数，则返回ID比since_id大的微博（即比since_id时间晚的微博）
+    ///   - max_id: 若指定此参数，则返回ID小于或等于max_id的微博，
+    /// - Returns: 返回微博字典数组 将数据库中的status中的数据反序列化 生成字典
+    func loadStatus(userId:String,since_id:Int64 = 0,max_id:Int64 = 0) -> [[String:AnyObject]] {
+        //1 准备sql
+        var sql  = "SELECT status,statusId,userId FROM T_status \n"
+        sql += "WHERE userId = \(userId) \n"
+        if since_id > 0 {//下拉
+           sql += "AND statusId > \(since_id) \n"
+        }else if max_id > 0{//上拉
+           sql += "AND statusId < \(max_id) \n"
+        }
+        sql += "ORDER BY statusId DESC LIMIT 20;"
+        
+        print(sql)
+        
+        
+        
+        
+        
+        
+        
+        return []
+    
+    }
     /// 新增/修改微博数据,数据属性的时候可能出现重叠
     ///
     /// - Parameters:
@@ -83,24 +144,16 @@ extension ZBSQLiteManager{
                 //执行sql
                 if db.executeUpdate(sql, withArgumentsIn: [statusId,userId,jsonData]) == false{
                     
-                    //FIXME: -rollback
+                    // -rollback oc : *rollback = YES
+                    // swift 1.x 2.x rollback.memory = true
+                    rollback.pointee = true
                     break
                 }
-                
-                
             }
-            
-            
         }
-        
-        
-        
-        
-        
-        
-        
-        
     }
+    
+    
     
     
     
