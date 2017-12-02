@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B377EB8A5A8D05C106E531DD /* Pods_FMDBHandle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18BCA7EB1A3BF534A9A7175 /* Pods_FMDBHandle.framework */; };
+		E0CB76171FD24996002F3F6D /* status.sql in Resources */ = {isa = PBXBuildFile; fileRef = E0CB76161FD24996002F3F6D /* status.sql */; };
 		E0FE749F1FD1501C00AC1731 /* ZBSQLiteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FE749E1FD1501C00AC1731 /* ZBSQLiteManager.swift */; };
 		E0FEB80D1FD14E57007C2F9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FEB80C1FD14E57007C2F9E /* AppDelegate.swift */; };
 		E0FEB80F1FD14E57007C2F9E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FEB80E1FD14E57007C2F9E /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 		6B35E04D3E0E9423F0A48519 /* Pods-FMDBHandle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FMDBHandle.release.xcconfig"; path = "Pods/Target Support Files/Pods-FMDBHandle/Pods-FMDBHandle.release.xcconfig"; sourceTree = "<group>"; };
 		868055ED04901759D6A0A7DB /* Pods-FMDBHandle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FMDBHandle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FMDBHandle/Pods-FMDBHandle.debug.xcconfig"; sourceTree = "<group>"; };
 		B18BCA7EB1A3BF534A9A7175 /* Pods_FMDBHandle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FMDBHandle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0CB76161FD24996002F3F6D /* status.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = status.sql; sourceTree = "<group>"; };
 		E0FE749E1FD1501C00AC1731 /* ZBSQLiteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZBSQLiteManager.swift; sourceTree = "<group>"; };
 		E0FEB8091FD14E57007C2F9E /* FMDBHandle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FMDBHandle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0FEB80C1FD14E57007C2F9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				E0FE749E1FD1501C00AC1731 /* ZBSQLiteManager.swift */,
+				E0CB76161FD24996002F3F6D /* status.sql */,
 			);
 			path = SQLite;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0CB76171FD24996002F3F6D /* status.sql in Resources */,
 				E0FEB8171FD14E57007C2F9E /* LaunchScreen.storyboard in Resources */,
 				E0FEB8141FD14E57007C2F9E /* Assets.xcassets in Resources */,
 				E0FEB8121FD14E57007C2F9E /* Main.storyboard in Resources */,
